@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   NoMoFOMO design system — Tailwind v4 theme
+   Source of truth: the NoMoFOMO design system artifact (Version 10).
+
+   Spacing uses Tailwind's default 4px scale. Design tokens map to:
+     space-1 4px  → 1     space-5 24px → 6
+     space-2 8px  → 2     space-6 32px → 8   (desktop page gutter)
+     space-3 12px → 3     space-7 48px → 12  (gap between homepage sections)
+     space-4 16px → 4
+   ========================================================================= */
+
+@theme {
+  /* ---------- colours ---------- */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --color-surface: #f4f6f7;
+  --color-surface-raised: #ffffff;
+  --color-line: #dbe2e6;
+  --color-line-strong: #b4c0c7;
+  --color-ink: #111a20;
+  --color-ink-muted: #52606a;
+
+  --color-tide: #0b6e69;        /* brand: primary actions, links, active nav, focus */
+  --color-on-tide: #ffffff;
+  --color-tide-soft: #dcefed;   /* selected states, tinted rows */
+  --color-tide-muted: #a9d6d1;  /* decorative only, never behind text */
+
+  --color-flare: #e8a317;       /* unread only: dots and counters */
+  --color-on-flare: #2a1d00;
+
+  --color-focus: var(--color-tide);
+
+  --color-cat-blue-soft: #e3edfb;    --color-cat-blue-ink: #1f4f99;
+  --color-cat-green-soft: #e2f3e6;   --color-cat-green-ink: #23683a;
+  --color-cat-amber-soft: #fbf0d9;   --color-cat-amber-ink: #7f5300;
+  --color-cat-rose-soft: #fbe5e8;    --color-cat-rose-ink: #a1303f;
+  --color-cat-violet-soft: #eee8fb;  --color-cat-violet-ink: #5b3fa8;
+  --color-cat-slate-soft: #e6ebee;   --color-cat-slate-ink: #3d4b55;
+
+  /* ---------- type ---------- */
+  --font-*: initial;
+  --font-display: var(--font-libre-franklin), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --font-alt-geist: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
+
+  /* Headings: use with font-display */
+  --text-h1: 40px;  --text-h1--line-height: 46px;  --text-h1--font-weight: 700;  --text-h1--letter-spacing: -0.02em;
+  --text-h2: 32px;  --text-h2--line-height: 38px;  --text-h2--font-weight: 700;  --text-h2--letter-spacing: -0.015em;
+  --text-h3: 26px;  --text-h3--line-height: 32px;  --text-h3--font-weight: 600;  --text-h3--letter-spacing: -0.01em;
+  --text-h4: 21px;  --text-h4--line-height: 28px;  --text-h4--font-weight: 600;
+  --text-h5: 18px;  --text-h5--line-height: 24px;  --text-h5--font-weight: 600;
+  --text-h6: 15px;  --text-h6--line-height: 20px;  --text-h6--font-weight: 600;
+
+  /* Body: use with font-serif */
+  --text-body-lg: 19px;  --text-body-lg--line-height: 30px;  --text-body-lg--font-weight: 400;
+  --text-body: 17px;     --text-body--line-height: 27px;     --text-body--font-weight: 400;
+  --text-body-sm: 15px;  --text-body-sm--line-height: 22px;  --text-body-sm--font-weight: 400;
+
+  /* Labels: use with font-display; label and label-sm are uppercase */
+  --text-label: 13px;     --text-label--line-height: 16px;  --text-label--font-weight: 600;  --text-label--letter-spacing: 0.06em;
+  --text-label-sm: 11px;  --text-label-sm--line-height: 14px;  --text-label-sm--font-weight: 600;  --text-label-sm--letter-spacing: 0.08em;
+  --text-meta: 13px;      --text-meta--line-height: 18px;   --text-meta--font-weight: 500;
+
+  /* ---------- radius & elevation ---------- */
+  --radius-sm: 4px;   /* duration badge, small tags */
+  --radius-md: 8px;   /* buttons, inputs */
+  --radius-lg: 14px;  /* cards */
+  /* pill: use rounded-full */
+
+  --shadow-hover: 0 6px 20px -8px rgba(17, 26, 32, 0.18); /* cards on hover only */
+}
+
+/* The current card's category pair, set by the cat-<hue> utilities below.
+   `inline` so bg-cat-soft / text-cat-ink resolve on the element, not on :root. */
+@theme inline {
+  --color-cat-soft: var(--c-soft, var(--color-cat-slate-soft));
+  --color-cat-ink: var(--c-ink, var(--color-cat-slate-ink));
+}
+
+/* ---------- category hue hooks: put one on a card, then use bg-cat-soft / text-cat-ink ---------- */
+@utility cat-blue   { --c-soft: var(--color-cat-blue-soft);   --c-ink: var(--color-cat-blue-ink); }
+@utility cat-green  { --c-soft: var(--color-cat-green-soft);  --c-ink: var(--color-cat-green-ink); }
+@utility cat-amber  { --c-soft: var(--color-cat-amber-soft);  --c-ink: var(--color-cat-amber-ink); }
+@utility cat-rose   { --c-soft: var(--color-cat-rose-soft);   --c-ink: var(--color-cat-rose-ink); }
+@utility cat-violet { --c-soft: var(--color-cat-violet-soft); --c-ink: var(--color-cat-violet-ink); }
+@utility cat-slate  { --c-soft: var(--color-cat-slate-soft);  --c-ink: var(--color-cat-slate-ink); }
+
+@layer base {
+  body {
+    @apply bg-surface text-ink font-serif text-body antialiased;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-focus;
+  }
+}

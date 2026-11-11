@@ -1,0 +1,68 @@
+---
+/**
+ * CategoryCard — one category in the homepage Categories grid.
+ * Shows new-item count (or "Caught up"), the latest headline, and its sources.
+ */
+import { hueClass, type CategoryHue } from '../../lib/design';
+import Avatar from './Avatar.astro';
+
+export interface Props {
+  href: string;
+  hue: CategoryHue;
+  name: string;
+  newCount: number;
+  latestTitle?: string;
+  /** Source names; the first three show as stacked avatars. */
+  sources: string[];
+  class?: string;
+}
+
+const { href, hue, name, newCount, latestTitle, sources, class: className } = Astro.props;
+const shown = sources.slice(0, 3);
+---
+
+<a
+  href={href}
+  class:list={[
+    hueClass[hue],
+    'flex min-w-0 flex-col gap-3 rounded-lg border border-transparent bg-cat-soft px-6 pt-6 pb-4 text-ink no-underline',
+    'transition-[border-color,box-shadow,translate] duration-150 ease-out',
+    'hover:-translate-y-0.5 hover:border-cat-ink hover:shadow-hover',
+    'motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+    className
+  ]}
+>
+  <div class="flex items-start justify-between gap-3">
+    <h3 class="m-0 font-display text-h4 text-cat-ink">{name}</h3>
+    {
+      newCount > 0 ? (
+        <span class="inline-flex flex-none items-center rounded-full bg-flare px-2.5 py-1 font-display text-xs leading-4 font-bold text-on-flare tabular-nums">
+          {newCount} new
+        </span>
+      ) : (
+        <span class="inline-flex flex-none items-center gap-1.5 rounded-full bg-surface-raised px-2.5 py-1 font-display text-xs leading-4 font-semibold text-ink-muted">
+          <svg class="size-3 text-tide" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2.5 6.5l2.2 2.2 4.8-5" />
+          </svg>
+          Caught up
+        </span>
+      )
+    }
+  </div>
+
+  {
+    latestTitle && (
+      <p class="m-0 line-clamp-2 font-serif text-body-sm text-ink">
+        <span class="mb-0.5 block font-display text-label-sm text-cat-ink uppercase">Latest</span>
+        {latestTitle}
+      </p>
+    )
+  }
+
+  <div class="mt-auto flex items-center gap-2 font-display text-meta text-ink tabular-nums">
+    <span class="flex">
+      {shown.map((s, i) => <Avatar name={s} class:list={['ring-2 ring-cat-soft', i > 0 && '-ml-0.75']} />)}
+    </span>
+    <span>{sources.length} {sources.length === 1 ? 'source' : 'sources'}</span>
+  </div>
+</a>

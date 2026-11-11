@@ -1,0 +1,14 @@
+---
+/** Category chip. Takes its colours from the nearest cat-<hue> class. */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<span
+  class:list={[
+    'inline-flex items-center self-start rounded-full bg-cat-soft px-2 py-1 font-display text-label-sm text-cat-ink uppercase',
+    className
+  ]}><slot /></span
+>

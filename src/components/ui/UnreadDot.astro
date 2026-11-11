@@ -1,0 +1,12 @@
+---
+/** Unread marker. `flare` is used for unread and nothing else. */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<span
+  class:list={['block size-2.5 flex-none rounded-full bg-flare ring-3 ring-surface-raised', className]}
+  role="img"
+  aria-label="Unread"></span>

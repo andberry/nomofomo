@@ -1,0 +1,119 @@
+---
+/**
+ * FeaturedNewsCard — one news item in the homepage Featured grid.
+ * With `image` it shows 16:9 media; without, it renders the text-only variant
+ * (bigger headline, unread dot in the chip row).
+ */
+import { hueClass, type CategoryHue, type SourceType } from '../../lib/design';
+import { formatItemTime } from '../../lib/format';
+import Avatar from './Avatar.astro';
+import Chip from './Chip.astro';
+import SourceGlyph from './SourceGlyph.astro';
+import UnreadDot from './UnreadDot.astro';
+
+export interface Props {
+  href: string;
+  hue: CategoryHue;
+  category: string;
+  title: string;
+  excerpt?: string;
+  source: string;
+  sourceType: SourceType;
+  /** A Date is formatted per the brand book; a string is shown as given. */
+  time: Date | string;
+  image?: { src: string; alt: string };
+  /** Videos only, e.g. "18:42". */
+  duration?: string;
+  unread?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  hue,
+  category,
+  title,
+  excerpt,
+  source,
+  sourceType,
+  time,
+  image,
+  duration,
+  unread = false,
+  class: className
+} = Astro.props;
+
+const textOnly = !image;
+const timeLabel = typeof time === 'string' ? time : formatItemTime(time);
+const isoTime = typeof time === 'string' ? undefined : time.toISOString();
+---
+
+<a
+  href={href}
+  class:list={[
+    hueClass[hue],
+    'group relative flex min-w-0 flex-col overflow-hidden rounded-lg border border-line bg-surface-raised text-ink no-underline',
+    'transition-[border-color,box-shadow,translate] duration-150 ease-out',
+    'hover:-translate-y-0.5 hover:border-line-strong hover:shadow-hover',
+    'motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+    className
+  ]}
+>
+  {
+    image && (
+      <div class="relative grid aspect-video place-items-center overflow-hidden bg-cat-soft text-cat-ink">
+        {/* glyph shows through if the image fails to load */}
+        <SourceGlyph type={sourceType} class="size-10 opacity-55" />
+        <img
+          src={image.src}
+          alt={image.alt}
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 size-full object-cover"
+          onerror="this.remove()"
+        />
+        {unread && <UnreadDot class="absolute top-3 left-3 z-10" />}
+        {duration && (
+          <span class="absolute right-2 bottom-2 z-10 rounded-sm bg-ink px-1.5 py-0.5 font-display text-xs leading-4 font-semibold text-surface-raised tabular-nums">
+            {duration}
+          </span>
+        )}
+      </div>
+    )
+  }
+
+  <div class:list={['flex min-w-0 flex-1 flex-col p-4', textOnly ? 'gap-3' : 'gap-2']}>
+    {
+      textOnly ? (
+        <div class="flex items-center justify-between gap-2">
+          <Chip>{category}</Chip>
+          {unread && <UnreadDot />}
+        </div>
+      ) : (
+        <Chip>{category}</Chip>
+      )
+    }
+
+    <h3
+      class:list={[
+        'm-0 font-display text-balance text-ink',
+        textOnly ? 'line-clamp-4 text-h4' : 'line-clamp-3 text-h5'
+      ]}
+    >
+      {title}
+    </h3>
+
+    {excerpt && <p class="m-0 line-clamp-2 font-serif text-body-sm text-ink-muted">{excerpt}</p>}
+
+    {/* meta: source on the first line, "type · time" under it; pinned to the bottom edge */}
+    <div class="mt-auto grid grid-cols-[20px_minmax(0,1fr)] items-center gap-x-2 gap-y-0.5 pt-2 font-display text-meta text-ink-muted tabular-nums">
+      <Avatar name={source} />
+      <span class="truncate font-semibold text-ink">{source}</span>
+      <span class="col-start-2">
+        {sourceType}
+        <span aria-hidden="true" class="mx-1">·</span>
+        <time datetime={isoTime}>{timeLabel}</time>
+      </span>
+    </div>
+  </div>
+</a>

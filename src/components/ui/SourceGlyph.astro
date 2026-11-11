@@ -1,0 +1,33 @@
+---
+/** Inline 1.5px line glyph per source type. Inherits colour from `currentColor`. */
+import type { SourceType } from '../../lib/design';
+
+interface Props {
+  type: SourceType;
+  class?: string;
+}
+
+const { type, class: className = 'size-6' } = Astro.props;
+
+const paths: Record<SourceType, string> = {
+  Article: 'M6 3h9l4 4v14H6z M15 3v4h4 M9 11h7 M9 15h7 M9 19h4',
+  Newspaper: 'M4 5h13v14a2 2 0 0 0 2 2H6a2 2 0 0 1-2-2z M17 9h3v10a2 2 0 0 1-4 0 M7 9h7 M7 13h7 M7 17h4',
+  Social: 'M4 5h16v11H9l-5 4z M8 9h8 M8 12h5',
+  Video: 'M3 6h18v12H3z M10 9.5v5l4.5-2.5z',
+  Newsletter: 'M3 6h18v12H3z M3 7l9 6 9-6',
+  Blog: 'M4 20l4-1 11-11-3-3L5 16z M14 7l3 3 M4 20h16'
+};
+---
+
+<svg
+  class={className}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  <path d={paths[type]} />
+</svg>

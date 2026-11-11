@@ -1,0 +1,179 @@
+---
+/** Living style guide: tokens and components of the NoMoFOMO design system. */
+import Base from '../layouts/Base.astro';
+import CategoryCard from '../components/ui/CategoryCard.astro';
+import FeaturedNewsCard from '../components/ui/FeaturedNewsCard.astro';
+
+const now = Date.now();
+const minsAgo = (m: number) => new Date(now - m * 60_000);
+
+const neutrals = [
+  ['surface', 'bg-surface'],
+  ['surface-raised', 'bg-surface-raised'],
+  ['line', 'bg-line'],
+  ['line-strong', 'bg-line-strong'],
+  ['ink', 'bg-ink'],
+  ['ink-muted', 'bg-ink-muted']
+];
+const brand = [
+  ['tide', 'bg-tide'],
+  ['on-tide', 'bg-on-tide'],
+  ['tide-soft', 'bg-tide-soft'],
+  ['tide-muted', 'bg-tide-muted'],
+  ['flare', 'bg-flare'],
+  ['on-flare', 'bg-on-flare']
+];
+const hues = [
+  ['blue', 'bg-cat-blue-soft', 'bg-cat-blue-ink'],
+  ['green', 'bg-cat-green-soft', 'bg-cat-green-ink'],
+  ['amber', 'bg-cat-amber-soft', 'bg-cat-amber-ink'],
+  ['rose', 'bg-cat-rose-soft', 'bg-cat-rose-ink'],
+  ['violet', 'bg-cat-violet-soft', 'bg-cat-violet-ink'],
+  ['slate', 'bg-cat-slate-soft', 'bg-cat-slate-ink']
+];
+const type = [
+  ['h1', 'font-display text-h1', 'Featured stories worth your time'],
+  ['h2', 'font-display text-h2', 'Featured'],
+  ['h3', 'font-display text-h3', 'Europe agrees on a common AI audit standard'],
+  ['h4', 'font-display text-h4', 'Technology'],
+  ['h5', 'font-display text-h5', 'Why chip makers are moving packaging back to Europe'],
+  ['h6', 'font-display text-h6', 'Sources you follow'],
+  ['body-lg', 'font-serif text-body-lg', 'The summary is written from four sources: two newspapers, one newsletter and a video interview.'],
+  ['body', 'font-serif text-body', 'Regulators published the final text on Tuesday, after eighteen months of negotiation.'],
+  ['body-sm', 'font-serif text-body-sm', 'Two-line excerpt under a card headline, clipped with an ellipsis.'],
+  ['label', 'font-display text-label uppercase', 'Technology'],
+  ['label-sm', 'font-display text-label-sm uppercase', 'Newsletter'],
+  ['meta', 'font-display text-meta text-ink-muted tabular-nums', 'The Verge · Article · 14 min ago']
+];
+---
+
+<Base title="Style guide · NoMoFOMO">
+  <main class="mx-auto flex max-w-[1280px] flex-col gap-12 px-4 py-12 sm:px-8">
+    <header class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="m-0 mb-2 font-display text-label text-ink-muted uppercase">Design system</p>
+        <h1 class="m-0 font-display text-h1">NoMo<span class="text-tide">FOMO</span> style guide</h1>
+      </div>
+    </header>
+
+    <section class="flex flex-col gap-6">
+      <h2 class="m-0 font-display text-h2">Colours</h2>
+      {
+        [
+          ['Neutrals', neutrals],
+          ['Brand & unread', brand]
+        ].map(([label, list]) => (
+          <div class="flex flex-col gap-3">
+            <h3 class="m-0 font-display text-h6 text-ink-muted">{label}</h3>
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+              {(list as string[][]).map(([name, cls]) => (
+                <div class="flex flex-col gap-2">
+                  <div class:list={['h-16 rounded-md border border-line', cls]} />
+                  <code class="font-display text-meta">{name}</code>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+      <div class="flex flex-col gap-3">
+        <h3 class="m-0 font-display text-h6 text-ink-muted">Category pairs (soft / ink)</h3>
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          {
+            hues.map(([name, soft, ink]) => (
+              <div class="flex flex-col gap-2">
+                <div class="flex h-16 overflow-hidden rounded-md border border-line">
+                  <div class:list={['flex-1', soft]} />
+                  <div class:list={['w-1/3', ink]} />
+                </div>
+                <code class="font-display text-meta">cat-{name}</code>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-6">
+      <h2 class="m-0 font-display text-h2">Typography</h2>
+      <div class="flex flex-col divide-y divide-line rounded-lg border border-line bg-surface-raised">
+        {
+          type.map(([name, cls, sample]) => (
+            <div class="grid gap-2 p-4 sm:grid-cols-[120px_1fr] sm:items-baseline">
+              <code class="font-display text-meta text-ink-muted">text-{name}</code>
+              <p class:list={['m-0', cls]}>{sample}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="m-0 font-display text-meta text-ink-muted">
+        Alternative under consideration: <span class="font-alt-geist text-h6 text-ink">Geist</span> (<code>font-alt-geist</code>).
+      </p>
+    </section>
+
+    <section class="flex flex-col gap-6">
+      <h2 class="m-0 font-display text-h2">FeaturedNewsCard</h2>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <FeaturedNewsCard
+          href="#"
+          hue="violet"
+          category="Technology"
+          title="Why chip makers are moving packaging back to Europe"
+          excerpt="Three plants announced this quarter point to a shift in where the last, most valuable step of production happens."
+          source="The Verge"
+          sourceType="Article"
+          time={minsAgo(14)}
+          image={{ src: '/samples/wafer-macro.jpg', alt: 'Rainbow reflections on a patterned silicon wafer' }}
+          unread
+        />
+        <FeaturedNewsCard
+          href="#"
+          hue="green"
+          category="Science"
+          title="How the new ocean heat maps were made, explained by the team"
+          excerpt="A walkthrough of the satellite data and ten years of buoy readings behind it."
+          source="Kurzgesagt"
+          sourceType="Video"
+          time={minsAgo(120)}
+          image={{ src: '/samples/ocean-waves.jpg', alt: 'Aerial view of waves breaking on a beach' }}
+          duration="18:42"
+          unread
+        />
+        <FeaturedNewsCard
+          href="#"
+          hue="amber"
+          category="Business"
+          title="The quiet return of the four-day week in mid-sized companies"
+          excerpt="This week's issue looks at payroll data from 400 firms and what changed after the pilots ended."
+          source="Morning Brew"
+          sourceType="Newsletter"
+          time={minsAgo(150)}
+          unread
+        />
+        <FeaturedNewsCard
+          href="#"
+          hue="blue"
+          category="World"
+          title="Europe agrees on a common AI audit standard"
+          excerpt="The final text sets out who checks high-risk systems and how often."
+          source="Corriere della Sera"
+          sourceType="Newspaper"
+          time={minsAgo(26 * 60)}
+          image={{ src: '/samples/eu-parliament.jpg', alt: 'The European Parliament chamber in Brussels' }}
+        />
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-6">
+      <h2 class="m-0 font-display text-h2">CategoryCard</h2>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <CategoryCard href="#" hue="violet" name="Technology" newCount={5} latestTitle="Why chip makers are moving packaging back to Europe" sources={['The Verge', 'Simon Willison', 'Ars Technica', 'Wired', 'Hacker News', 'Platformer', 'Stratechery', 'Ben Thompson', 'Lobsters']} />
+        <CategoryCard href="#" hue="rose" name="Design" newCount={2} latestTitle="A type foundry open-sources its newsroom family" sources={['Design Notes', 'It’s Nice That', 'Eye on Design']} />
+        <CategoryCard href="#" hue="slate" name="Sport" newCount={0} latestTitle="What the new calendar means for the Champions League group stage" sources={['BBC Sport', 'The Athletic']} />
+      </div>
+    </section>
+
+    <p class="m-0 font-display text-meta text-ink-muted">Sample photos: Wikimedia Commons (see public/samples/CREDITS.md).</p>
+  </main>
+
+</Base>
