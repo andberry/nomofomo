@@ -1,0 +1,167 @@
+[
+  {
+    "id": "chip-packaging",
+    "sourceId": "the-verge",
+    "title": "Why chip makers are moving packaging back to Europe",
+    "excerpt": "Three plants announced this quarter point to a shift in where the last, most valuable step of production happens.",
+    "url": "https://example.com/chip-packaging",
+    "ageMinutes": 14,
+    "image": { "src": "/mocks/wafer-macro.jpg", "alt": "Rainbow reflections on a patterned silicon wafer" },
+    "unread": true
+  },
+  {
+    "id": "ocean-heat-maps",
+    "sourceId": "kurzgesagt",
+    "title": "How the new ocean heat maps were made, explained by the team",
+    "excerpt": "A walkthrough of the satellite data and ten years of buoy readings behind it.",
+    "url": "https://example.com/ocean-heat-maps",
+    "ageMinutes": 38,
+    "image": { "src": "/mocks/ocean-waves.jpg", "alt": "Aerial view of waves breaking on a beach" },
+    "duration": "18:42",
+    "unread": true
+  },
+  {
+    "id": "four-day-week",
+    "sourceId": "morning-brew",
+    "title": "The quiet return of the four-day week in mid-sized companies",
+    "excerpt": "This week's issue looks at payroll data from 400 firms and what changed after the pilots ended.",
+    "url": "https://example.com/four-day-week",
+    "ageMinutes": 65,
+    "unread": true
+  },
+  {
+    "id": "eu-ai-audit",
+    "sourceId": "corriere",
+    "title": "Europe agrees on a common AI audit standard",
+    "excerpt": "The final text sets out who checks high-risk systems and how often.",
+    "url": "https://example.com/eu-ai-audit",
+    "ageMinutes": 125,
+    "image": { "src": "/mocks/eu-parliament.jpg", "alt": "The European Parliament chamber in Brussels" },
+    "unread": true
+  },
+  {
+    "id": "phone-9b-model",
+    "sourceId": "simon-willison",
+    "title": "Running a 9B model on a phone is now fast enough for real autocomplete",
+    "excerpt": "A thread with benchmarks from three devices and the quantisation settings used.",
+    "url": "https://example.com/phone-9b-model",
+    "ageMinutes": 190,
+    "unread": false
+  },
+  {
+    "id": "type-foundry",
+    "sourceId": "design-notes",
+    "title": "A type foundry open-sources its newsroom family",
+    "excerpt": "Six weights, a condensed cut and an unusual licence for public broadcasters.",
+    "url": "https://example.com/type-foundry",
+    "ageMinutes": 245,
+    "image": { "src": "/mocks/type-case.jpg", "alt": "A wooden case of letterpress type" },
+    "unread": true
+  },
+  {
+    "id": "champions-calendar",
+    "sourceId": "bbc-sport",
+    "title": "What the new calendar means for the Champions League group stage",
+    "excerpt": "Fewer dead rubbers, more travel: the numbers behind the reshuffle.",
+    "url": "https://example.com/champions-calendar",
+    "ageMinutes": 310,
+    "image": { "src": "/mocks/football-stadium.jpg", "alt": "Olympic stadium in Munich at dusk" },
+    "unread": false
+  },
+  {
+    "id": "bird-migration",
+    "sourceId": "guardian-science",
+    "title": "Bird migration is starting a week earlier than in 2000, survey finds",
+    "excerpt": "Volunteers logged 1.2 million sightings across 40 countries.",
+    "url": "https://example.com/bird-migration",
+    "ageMinutes": 370,
+    "image": { "src": "/mocks/cranes-migration.jpg", "alt": "Cranes flying at sunset" },
+    "unread": false
+  },
+
+  {
+    "id": "linux-scheduler",
+    "sourceId": "lwn",
+    "title": "The new scheduler lands in the 6.19 merge window",
+    "excerpt": "What changes for desktop latency, and the benchmarks that convinced maintainers.",
+    "url": "https://example.com/linux-scheduler",
+    "ageMinutes": 430,
+    "unread": true
+  },
+  {
+    "id": "cloud-egress",
+    "sourceId": "ars-technica",
+    "title": "Cloud providers cut egress fees ahead of new EU data rules",
+    "excerpt": "Two of the three largest providers changed their pricing pages overnight.",
+    "url": "https://example.com/cloud-egress",
+    "ageMinutes": 520,
+    "unread": true
+  },
+  {
+    "id": "url-design",
+    "sourceId": "simon-willison",
+    "title": "Notes on designing URLs that last twenty years",
+    "url": "https://example.com/url-design",
+    "ageMinutes": 610,
+    "unread": true
+  },
+  {
+    "id": "terminal-renderer",
+    "sourceId": "the-verge",
+    "title": "The terminal app that renders at 120 frames a second",
+    "excerpt": "A look at the GPU renderer behind a fast-growing open-source terminal.",
+    "url": "https://example.com/terminal-renderer",
+    "ageMinutes": 700,
+    "unread": true
+  },
+  {
+    "id": "fusion-record",
+    "sourceId": "nature-news",
+    "title": "Fusion experiment holds plasma for a record 22 minutes",
+    "excerpt": "The result doubles the previous best and tests a new wall material.",
+    "url": "https://example.com/fusion-record",
+    "ageMinutes": 480,
+    "unread": true
+  },
+  {
+    "id": "glacier-survey",
+    "sourceId": "guardian-science",
+    "title": "Alpine glaciers lost 4% of their volume this summer",
+    "url": "https://example.com/glacier-survey",
+    "ageMinutes": 900,
+    "unread": true
+  },
+  {
+    "id": "un-water-summit",
+    "sourceId": "reuters-world",
+    "title": "UN water summit ends with a funding pledge but no binding targets",
+    "excerpt": "Delegates agreed on a shared monitoring framework for river basins.",
+    "url": "https://example.com/un-water-summit",
+    "ageMinutes": 560,
+    "unread": true
+  },
+  {
+    "id": "wayfinding",
+    "sourceId": "eye-on-design",
+    "title": "The quiet redesign of Milan's metro wayfinding",
+    "url": "https://example.com/wayfinding",
+    "ageMinutes": 800,
+    "unread": true
+  },
+  {
+    "id": "pension-funds",
+    "sourceId": "ft-alphaville",
+    "title": "Pension funds and the long wait for a bond market thaw",
+    "url": "https://example.com/pension-funds",
+    "ageMinutes": 1500,
+    "unread": false
+  },
+  {
+    "id": "transfer-window",
+    "sourceId": "bbc-sport",
+    "title": "Transfer window: the five deals that actually changed squads",
+    "url": "https://example.com/transfer-window",
+    "ageMinutes": 1700,
+    "unread": false
+  }
+]

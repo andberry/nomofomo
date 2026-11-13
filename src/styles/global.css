@@ -17,12 +17,14 @@
   --color-transparent: transparent;
   --color-current: currentColor;
 
+  --color-white: white;
   --color-surface: #f4f6f7;
   --color-surface-raised: #ffffff;
   --color-line: #dbe2e6;
   --color-line-strong: #b4c0c7;
   --color-ink: #111a20;
   --color-ink-muted: #52606a;
+  --color-gray-light: #eee;
 
   --color-tide: #0b6e69;        /* brand: primary actions, links, active nav, focus */
   --color-on-tide: #ffffff;
@@ -33,6 +35,9 @@
   --color-on-flare: #2a1d00;
 
   --color-focus: var(--color-tide);
+
+  --color-primary: var(--color-tide);
+  --color-secondary: var(--color-flare);
 
   --color-cat-blue-soft: #e3edfb;    --color-cat-blue-ink: #1f4f99;
   --color-cat-green-soft: #e2f3e6;   --color-cat-green-ink: #23683a;
@@ -62,7 +67,7 @@
 
   /* Labels: use with font-display; label and label-sm are uppercase */
   --text-label: 13px;     --text-label--line-height: 16px;  --text-label--font-weight: 600;  --text-label--letter-spacing: 0.06em;
-  --text-label-sm: 11px;  --text-label-sm--line-height: 14px;  --text-label-sm--font-weight: 600;  --text-label-sm--letter-spacing: 0.08em;
+  --text-label-sm: 10px;  --text-label-sm--line-height: 14px;  --text-label-sm--font-weight: 600;  --text-label-sm--letter-spacing: 0.08em;
   --text-meta: 13px;      --text-meta--line-height: 18px;   --text-meta--font-weight: 500;
 
   /* ---------- radius & elevation ---------- */

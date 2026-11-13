@@ -1,0 +1,8 @@
+[
+  { "id": "technology", "name": "Technology", "hue": "violet" },
+  { "id": "science", "name": "Science", "hue": "green" },
+  { "id": "world", "name": "World", "hue": "blue" },
+  { "id": "design", "name": "Design", "hue": "rose" },
+  { "id": "business", "name": "Business", "hue": "amber" },
+  { "id": "sport", "name": "Sport", "hue": "slate" }
+]

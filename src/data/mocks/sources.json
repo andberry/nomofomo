@@ -1,0 +1,21 @@
+[
+  { "id": "the-verge", "name": "The Verge", "type": "Article", "categoryId": "technology", "url": "https://www.theverge.com/rss/index.xml" },
+  { "id": "simon-willison", "name": "Simon Willison", "type": "Social", "categoryId": "technology", "url": "https://simonwillison.net/atom/everything/" },
+  { "id": "ars-technica", "name": "Ars Technica", "type": "Article", "categoryId": "technology", "url": "https://feeds.arstechnica.com/arstechnica/index" },
+  { "id": "lwn", "name": "LWN.net", "type": "Newsletter", "categoryId": "technology", "url": "https://lwn.net/headlines/rss" },
+
+  { "id": "kurzgesagt", "name": "Kurzgesagt", "type": "Video", "categoryId": "science", "url": "https://www.youtube.com/@kurzgesagt" },
+  { "id": "guardian-science", "name": "The Guardian", "type": "Newspaper", "categoryId": "science", "url": "https://www.theguardian.com/science/rss" },
+  { "id": "nature-news", "name": "Nature News", "type": "Article", "categoryId": "science", "url": "https://www.nature.com/nature.rss" },
+
+  { "id": "corriere", "name": "Corriere della Sera", "type": "Newspaper", "categoryId": "world", "url": "https://www.corriere.it/rss/homepage.xml" },
+  { "id": "reuters-world", "name": "Reuters", "type": "Article", "categoryId": "world", "url": "https://www.reuters.com/world/" },
+
+  { "id": "design-notes", "name": "Design Notes", "type": "Blog", "categoryId": "design", "url": "https://example.com/design-notes/feed" },
+  { "id": "eye-on-design", "name": "Eye on Design", "type": "Article", "categoryId": "design", "url": "https://eyeondesign.aiga.org/feed/" },
+
+  { "id": "morning-brew", "name": "Morning Brew", "type": "Newsletter", "categoryId": "business", "url": "https://www.morningbrew.com/daily" },
+  { "id": "ft-alphaville", "name": "FT Alphaville", "type": "Blog", "categoryId": "business", "url": "https://www.ft.com/alphaville" },
+
+  { "id": "bbc-sport", "name": "BBC Sport", "type": "Article", "categoryId": "sport", "url": "https://feeds.bbci.co.uk/sport/rss.xml" }
+]

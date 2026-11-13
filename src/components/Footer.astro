@@ -1,0 +1,13 @@
+---
+export interface Props {
+  fetchedLabel: string;
+}
+
+const {fetchedLabel} = Astro.props
+---
+
+<footer class="border-t border-line py-6 font-display text-meta text-white bg-primary">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8">
+    <div>Fetched at {fetchedLabel} · reload to refresh</div>
+  </div>
+</footer>

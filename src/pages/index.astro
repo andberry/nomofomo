@@ -1,16 +1,71 @@
 ---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import CategoryCard from '../components/ui/CategoryCard.astro';
+import FeaturedNewsCard from '../components/ui/FeaturedNewsCard.astro';
+import Base from '../layouts/Base.astro';
+import { getHomepageData } from '../lib/feed';
+
+const { featured, categories, fetchedAt } = await getHomepageData();
+
+// Category grid columns match the category count: 8 → 4 columns, otherwise 3.
+const categoryCols = categories.length % 4 === 0 && categories.length >= 8 ? 'min-[1120px]:grid-cols-4' : 'min-[1120px]:grid-cols-3';
+const fetchedLabel = fetchedAt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base title="Home · NoMoFOMO">
+  <Header current="home" />
+
+  <main class="mx-auto flex max-w-7xl flex-col gap-12 px-4 py-12 sm:px-8">
+    <h1 class="sr-only">Home</h1>
+
+    <section class="flex flex-col gap-6" aria-labelledby="featured-title">
+      <div class="flex items-baseline justify-between gap-4">
+        <h2 id="featured-title" class="m-0 font-display text-h2">
+          Featured
+          <small class="ml-3 font-display text-[15px] leading-5 font-medium tracking-normal text-ink-muted">Latest {featured.length}, all categories</small>
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 gap-x-8 gap-y-16 min-[560px]:grid-cols-2 min-[840px]:grid-cols-3">
+        {
+          featured.map((item) => (
+            <FeaturedNewsCard
+              href={item.url}
+              hue={item.category.hue}
+              category={item.category.name}
+              title={item.title}
+              excerpt={item.excerpt}
+              source={item.source.name}
+              sourceType={item.source.type}
+              time={item.publishedAt}
+              image={item.image}
+            />
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-6" aria-labelledby="categories-title">
+      <div class="flex items-baseline justify-between gap-4">
+        <h2 id="categories-title" class="m-0 font-display text-h2">Categories</h2>
+      </div>
+      <div class:list={['grid grid-cols-1 gap-6 min-[560px]:grid-cols-2', categoryCols]}>
+        {
+          categories.map(({ category, newCount, latest, sources }) => (
+            <CategoryCard
+              href={`/categories/${category.id}`}
+              hue={category.hue}
+              name={category.name}
+              newCount={newCount}
+              latestTitle={latest?.title}
+              sources={sources.map((s) => s.name)}
+            />
+          ))
+        }
+      </div>
+    </section>
+
+    
+  </main>
+  <Footer fetchedLabel={fetchedLabel} ></Footer>
+</Base>
