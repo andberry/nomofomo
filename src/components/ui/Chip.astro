@@ -1,5 +1,5 @@
 ---
-/** Category chip. Takes its colours from the nearest cat-<hue> class. */
+/** Category chip: black uppercase label on white with a black line. */
 interface Props {
   class?: string;
 }
@@ -8,7 +8,7 @@ const { class: className } = Astro.props;
 
 <span
   class:list={[
-    'inline-flex items-center self-start rounded-sm bg-cat-soft px-2 py-1 font-display text-label-sm text-cat-ink uppercase',
+    'inline-flex items-center self-start rounded border border-black bg-white px-2 py-1 text-label-sm text-black uppercase',
     className
   ]}><slot /></span
 >

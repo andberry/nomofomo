@@ -1,6 +1,6 @@
 ---
-/** Source avatar: the source's initial on an ink disc. */
-import { initial } from '../../lib/format';
+/** Source avatar: the source's initial on a black disc. */
+import { initial } from "../../lib/format";
 
 interface Props {
   name: string;
@@ -11,8 +11,10 @@ const { name, class: className } = Astro.props;
 
 <span
   class:list={[
-    'inline-grid size-5 flex-none place-items-center rounded-full bg-ink font-display text-[10px] leading-none font-bold text-surface-raised',
-    className
+    "inline-grid size-5 flex-none place-items-center rounded-full bg-black-0 text-[10px] leading-none font-bold text-white",
+    className,
   ]}
-  aria-hidden="true">{initial(name)}</span
+  aria-hidden="true"
 >
+  {initial(name)}
+</span>

@@ -3,12 +3,10 @@
  * CategoryCard — one category in the homepage Categories grid.
  * Shows new-item count (or "Caught up"), the latest headline, and its sources.
  */
-import { hueClass, type CategoryHue } from '../../lib/design';
 import Avatar from './Avatar.astro';
 
 export interface Props {
   href: string;
-  hue: CategoryHue;
   name: string;
   newCount: number;
   latestTitle?: string;
@@ -17,31 +15,28 @@ export interface Props {
   class?: string;
 }
 
-const { href, hue, name, newCount, latestTitle, sources, class: className } = Astro.props;
+const { href, name, newCount, latestTitle, sources, class: className } = Astro.props;
 const shown = sources.slice(0, 3);
 ---
 
 <a
   href={href}
   class:list={[
-    hueClass[hue],
-    'flex min-w-0 flex-col gap-3 rounded-md border border-transparent bg-cat-soft px-6 pt-6 pb-4 text-ink no-underline',
-    'transition-[border-color,box-shadow,translate] duration-150 ease-out',
-    'hover:-translate-y-0.5 hover:border-cat-ink hover:shadow-hover',
-    'motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+    'flex min-w-0 flex-col gap-3 rounded border border-black bg-white px-6 pt-6 pb-4 text-black no-underline',
+    'transition-colors duration-150 ease-out hover:border-primary motion-reduce:transition-none',
     className
   ]}
 >
   <div class="flex items-start justify-between gap-3">
-    <h3 class="m-0 font-display text-h4 text-cat-ink">{name}</h3>
+    <h3 class="m-0 text-h4">{name}</h3>
     {
       newCount > 0 ? (
-        <span class="inline-flex flex-none items-center rounded-full bg-flare px-2.5 py-1 font-display text-xs leading-4 font-bold text-on-flare tabular-nums">
+        <span class="inline-flex flex-none items-center rounded-full bg-secondary px-2.5 py-1 text-xs leading-4 font-bold text-black tabular-nums">
           {newCount} new
         </span>
       ) : (
-        <span class="inline-flex flex-none items-center gap-1.5 rounded-full bg-surface-raised px-2.5 py-1 font-display text-xs leading-4 font-semibold text-ink-muted">
-          <svg class="size-3 text-tide" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <span class="inline-flex flex-none items-center gap-1.5 rounded-full border border-black px-2.25 py-0.75 text-xs leading-4 font-semibold">
+          <svg class="size-3 text-primary" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M2.5 6.5l2.2 2.2 4.8-5" />
           </svg>
           Caught up
@@ -52,16 +47,16 @@ const shown = sources.slice(0, 3);
 
   {
     latestTitle && (
-      <p class="m-0 line-clamp-2 font-serif text-body-sm text-ink">
-        <span class="mb-0.5 block font-display text-label-sm text-cat-ink uppercase">Latest</span>
+      <p class="m-0 line-clamp-2 text-body-sm">
+        <span class="mb-0.5 block text-label-sm text-primary uppercase">Latest</span>
         {latestTitle}
       </p>
     )
   }
 
-  <div class="mt-auto flex items-center gap-2 font-display text-meta text-ink tabular-nums">
+  <div class="mt-auto flex items-center gap-2 text-meta tabular-nums">
     <span class="flex">
-      {shown.map((s, i) => <Avatar name={s} class:list={['ring-2 ring-cat-soft', i > 0 && '-ml-0.75']} />)}
+      {shown.map((s, i) => <Avatar name={s} class:list={['outline-2 outline-white', i > 0 && '-ml-0.75']} />)}
     </span>
     <span>{sources.length} {sources.length === 1 ? 'source' : 'sources'}</span>
   </div>

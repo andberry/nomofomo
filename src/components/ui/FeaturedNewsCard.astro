@@ -1,18 +1,17 @@
 ---
 /**
  * FeaturedNewsCard — one news item in the homepage Featured grid.
- * With `image` it shows 16:9 media; without, it renders the text-only variant
- * (bigger headline, unread dot in the chip row).
+ * With `image` the photo fills the 16:6 media strip; without, the strip stays
+ * white and shows the source-type glyph.
  */
-import { hueClass, type CategoryHue, type SourceType } from '../../lib/design';
-import { formatItemTime } from '../../lib/format';
-import Avatar from './Avatar.astro';
-import Chip from './Chip.astro';
-import SourceGlyph from './SourceGlyph.astro';
+import type { SourceType } from "../../lib/design";
+import { formatItemTime } from "../../lib/format";
+import Avatar from "./Avatar.astro";
+import Chip from "./Chip.astro";
+import SourceGlyph from "./SourceGlyph.astro";
 
 export interface Props {
   href: string;
-  hue: CategoryHue;
   category: string;
   title: string;
   excerpt?: string;
@@ -26,7 +25,6 @@ export interface Props {
 
 const {
   href,
-  hue,
   category,
   title,
   excerpt,
@@ -34,65 +32,55 @@ const {
   sourceType,
   time,
   image,
-  class: className
+  class: className,
 } = Astro.props;
 
-const textOnly = !image;
-const timeLabel = typeof time === 'string' ? time : formatItemTime(time);
-const isoTime = typeof time === 'string' ? undefined : time.toISOString();
+const timeLabel = typeof time === "string" ? time : formatItemTime(time);
+const isoTime = typeof time === "string" ? undefined : time.toISOString();
 ---
 
 <a
   href={href}
   class:list={[
-    hueClass[hue],
-    'group relative flex min-w-0 flex-col overflow-hidden rounded-md border border-line bg-surface-raised text-ink no-underline',
-    'transition-[border-color,box-shadow,translate] duration-150 ease-out',
-    'hover:-translate-y-0.5 hover:border-line-strong hover:shadow-hover',
-    'motion-reduce:transition-none motion-reduce:hover:translate-y-0',
-    className
+    "group relative flex min-w-0 flex-col overflow-hidden rounded border border-gray bg-white text-black no-underline",
+    "transition-colors duration-150 ease-out hover:border-black motion-reduce:transition-none",
+    className,
   ]}
->  
-  <div class="relative grid aspect-16/6 place-items-center overflow-hidden bg-cat-soft text-cat-ink">
+>
+  <div class="relative grid aspect-16/6 place-items-center overflow-hidden border-b border-black">
     {/* glyph shows through if the image fails to load */}
-    <SourceGlyph type={sourceType} class="size-10 opacity-55" />
+    <SourceGlyph type={sourceType} class="size-10" />
     {image && (
-    <img
-      src={image.src}
-      alt={image.alt}
-      loading="lazy"
-      decoding="async"
-      class="absolute inset-0 size-full object-cover"
-      onerror="this.remove()"
-    />
+      <img
+        src={image.src}
+        alt={image.alt}
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 size-full object-cover"
+        onerror="this.remove()"
+      />
     )}
-    {!image && (
-      <div class="absolute inset-0 size-full object-cover bg-gray-light"></div>
-    )}
-    <div class="absolute bottom-3 right-3">
+    <div class="absolute right-3 bottom-3">
       <Chip>{category}</Chip>
     </div>
   </div>
 
-  <div class:list={['flex min-w-0 flex-1 flex-col p-4', textOnly ? 'gap-3' : 'gap-2']}>    
-    
-    <h3
-      class:list={[
-        'm-0 font-display text-balance text-ink line-clamp-3 text-h4 leading-[1.2]'
-      ]}
-    >
+  <div class="flex min-w-0 flex-1 flex-col gap-2 p-4">
+    <h3 class="m-0 line-clamp-3 text-h4 leading-[1.2] text-balance text-black">
       {title}
     </h3>
 
-    {excerpt && <p class="m-0 line-clamp-2 font-serif text-body-sm text-ink-muted">{excerpt}</p>}
+    {excerpt && <p class="m-0 line-clamp-2 text-body-sm">{excerpt}</p>}
 
     {/* meta: source on the first line, "type · time" under it; pinned to the bottom edge */}
-    <div class="mt-auto grid grid-cols-[20px_minmax(0,1fr)] items-center gap-x-2 gap-y-0.5 pt-2 font-display text-meta text-ink-muted tabular-nums">
+    <div class="mt-auto grid grid-cols-[20px_minmax(0,1fr)] items-center gap-x-2 gap-y-0.5 pt-2 text-meta tabular-nums">
       <Avatar name={source} />
-      <span class="truncate font-semibold text-ink">{source}</span>
+      <span class="truncate font-semibold">{source}</span>
       <span class="col-start-2">
         {sourceType}
-        <span aria-hidden="true" class="mx-1">·</span>
+        <span aria-hidden="true" class="mx-1">
+          ·
+        </span>
         <time datetime={isoTime}>{timeLabel}</time>
       </span>
     </div>

@@ -18,9 +18,7 @@ const { title = 'NoMoFOMO' } = Astro.props;
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <Font cssVariable="--font-libre-franklin" preload />
-    <Font cssVariable="--font-source-serif" preload />
-    <Font cssVariable="--font-geist" />
+    <Font cssVariable="--font-geist" preload />
   </head>
   <body>
     <slot />
